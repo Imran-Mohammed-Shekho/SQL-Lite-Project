@@ -15,13 +15,14 @@ class SQliteProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.splash,
 
       routes: {
-        AppRoutes.splash: (_) => const Splashscreen(),
+        AppRoutes.splash: (_) => const SplashScreen(),
         AppRoutes.login: (_) => const LoginScreen(),
         AppRoutes.signUp: (_) => const SignUpScreen(),
-        AppRoutes.userHome: (_) => const userHome(),
+        AppRoutes.userHome: (_) => const UserHome(),
       },
     );
   }

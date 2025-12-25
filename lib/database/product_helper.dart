@@ -3,6 +3,7 @@ import 'package:testing/database/db_helper.dart';
 
 class ProductHelper {
   static const String productTable = "products";
+
   static Future insertProduct(String name, double price, int userId) async {
     final Database conn = await DBhelper.database;
 
@@ -16,7 +17,10 @@ class ProductHelper {
   static Future<List<Map<String, dynamic>>> getProducts() async {
     final Database conn = await DBhelper.database;
 
-    return conn.query(productTable, columns: ['id', "name", "price"]);
+    return conn.query(
+      productTable,
+      columns: ['id', "user_id", "name", "price"],
+    );
   }
 
   static Future<int> deleteProducts(int id) async {

@@ -3,10 +3,25 @@ import 'package:testing/database/db_helper.dart';
 
 class UserHelper {
   static const String usersTable = "users";
-  static Future insertUsers(String name, String email) async {
+
+  static Future<bool> login(String email, String password) async {
+    Database con = await DBhelper.database;
+    final List? result = await con.query(
+      usersTable,
+      columns: ["email", "password"],
+      where: "email=? AND password=?",
+      whereArgs: [email, password],
+    );
+    return result!.isNotEmpty;
+  }
+
+  static Future insertUsers(String email, String password) async {
     final Database conn = await DBhelper.database;
 
-    return await conn.insert(usersTable, {"name": name, "email": email});
+    return await conn.insert(usersTable, {
+      "email": email,
+      "password": password,
+    }, conflictAlgorithm: ConflictAlgorithm.ignore);
   }
 
   static Future<List<Map<String, dynamic>>> getUsers() async {
