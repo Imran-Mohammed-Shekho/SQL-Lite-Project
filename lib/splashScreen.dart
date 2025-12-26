@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:testing/database/db_helper.dart';
 import 'package:testing/database/user_helper.dart';
 import 'dart:async';
 
@@ -326,10 +325,6 @@ class _DatabaseRingsPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.5
-      ..color = Colors.white.withOpacity(0.3);
 
     for (int i = 0; i < 3; i++) {
       final radius = 30 + i * 15;

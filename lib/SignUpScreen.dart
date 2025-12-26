@@ -28,14 +28,6 @@ class _SignUpScreenState extends State<SignUpScreen>
   bool _isLoading = false;
   bool _acceptTerms = false;
 
-  String? _selectedUserType;
-  final List<String> _userTypes = [
-    'Developer',
-    'Administrator',
-    'Analyst',
-    'Viewer',
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -742,59 +734,6 @@ class _SignUpScreenState extends State<SignUpScreen>
           ),
         ),
         cursorColor: Colors.blueAccent,
-      ),
-    );
-  }
-
-  Widget _buildUserTypeDropdown() {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.05),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.white.withOpacity(0.1)),
-      ),
-      child: DropdownButtonHideUnderline(
-        child: DropdownButtonFormField<String>(
-          value: _selectedUserType,
-          items: _userTypes.map((type) {
-            return DropdownMenuItem<String>(
-              value: type,
-              child: Text(
-                type,
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.9),
-                  fontSize: 16,
-                ),
-              ),
-            );
-          }).toList(),
-          onChanged: (value) {
-            setState(() {
-              _selectedUserType = value;
-            });
-          },
-          style: TextStyle(color: Colors.white),
-          dropdownColor: Colors.blue.shade900,
-          icon: Icon(
-            Icons.arrow_drop_down_rounded,
-            color: Colors.white.withOpacity(0.6),
-          ),
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 18,
-            ),
-            border: InputBorder.none,
-            hintText: 'Select User Type',
-            hintStyle: TextStyle(color: Colors.white.withOpacity(0.4)),
-            prefixIcon: Icon(
-              Icons.work_rounded,
-              color: Colors.white.withOpacity(0.6),
-              size: 22,
-            ),
-          ),
-          borderRadius: BorderRadius.circular(12),
-        ),
       ),
     );
   }

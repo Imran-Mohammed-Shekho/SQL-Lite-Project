@@ -77,11 +77,9 @@ class _UserHomeState extends State<UserHome>
     '👑',
   ];
 
-  int _selectedIndex = 0;
   bool _searchVisible = false;
   final TextEditingController _searchController = TextEditingController();
   final List<String> _searchResults = [];
-  final List<String> _recentSearches = ['Laptop', 'Headphones', 'Smart Watch'];
 
   @override
   void initState() {
@@ -99,9 +97,7 @@ class _UserHomeState extends State<UserHome>
 
   void _handleTabSelection() {
     if (_tabController.indexIsChanging) {
-      setState(() {
-        _selectedIndex = _tabController.index;
-      });
+      setState(() {});
     }
   }
 
