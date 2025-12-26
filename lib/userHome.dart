@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:testing/database/user_helper.dart';
+import 'package:testing/routes/routes.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({super.key});
@@ -322,8 +324,8 @@ class _UserHomeState extends State<UserHome>
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             SliverAppBar(
-              expandedHeight: 200,
-              collapsedHeight: 200,
+              expandedHeight: 120,
+              collapsedHeight: 120,
               floating: false,
               pinned: false,
               backgroundColor: Colors.blue.shade900,
@@ -500,7 +502,7 @@ class _UserHomeState extends State<UserHome>
                       ],
                     ),
                   ),
-                  indicatorPadding: const EdgeInsets.all(6),
+                  indicatorPadding: const EdgeInsets.all(4),
                   tabs: const [
                     Tab(text: 'Products'),
                     Tab(text: 'Show Products'),
@@ -519,9 +521,10 @@ class _UserHomeState extends State<UserHome>
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Add new product
+          UserHelper.deleteUserSession();
+          Navigator.pushNamed(context, AppRoutes.login);
         },
-        backgroundColor: Colors.blueAccent.shade400,
+        backgroundColor: Colors.red,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 8,

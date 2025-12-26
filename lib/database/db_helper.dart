@@ -25,9 +25,8 @@ class DBhelper {
   static Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE IF NOT EXISTS users (
-      
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      email TEXT NOT NULL,
+      email TEXT NOT NULL UNIQUE,
       password TEXT NOT NULL
 
       )
@@ -43,6 +42,20 @@ class DBhelper {
         price DOUBLE NOT NULL ,
         FOREIGN KEY(user_id) REFERENCES users(id)
      
+     
+     )
+
+
+
+
+''');
+
+    await db.execute('''
+     
+     CREATE TABLE IF NOT EXISTS session (
+        
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        user_id INTEGER NOT NULL
      
      )
 

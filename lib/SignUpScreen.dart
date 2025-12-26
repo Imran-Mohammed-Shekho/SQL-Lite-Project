@@ -86,12 +86,13 @@ class _SignUpScreenState extends State<SignUpScreen>
 
     // Show success dialog
 
-    final result = await UserHelper.insertUsers(
+    int result = await UserHelper.insertUsers(
       _emailController.text,
       _passwordController.text,
     );
 
-    if (result > 0) {
+    if (result > -1) {
+      UserHelper.CreateUserSession(result);
       _showSuccessDialog();
     } else {
       if (!mounted) return;

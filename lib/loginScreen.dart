@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:testing/database/product_helper.dart';
+
 import 'package:testing/database/user_helper.dart';
 import 'package:testing/routes/routes.dart';
 
@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen>
 
     setState(() => _isLoading = true);
 
-    bool result = await UserHelper.login(
+    final int result = await UserHelper.login(
       _emailController.text,
       _passwordController.text,
     );
@@ -73,12 +73,15 @@ class _LoginScreenState extends State<LoginScreen>
     await Future.delayed(const Duration(seconds: 2));
 
     setState(() => _isLoading = false);
-    if (result == true) {
-      Navigator.pushNamed(context, AppRoutes.userHome);
-    } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("No user found")));
+    if (mounted) {
+      if (result > -1) {
+        UserHelper.CreateUserSession(result);
+        Navigator.pushNamed(context, AppRoutes.userHome);
+      } else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("No user found")));
+      }
     }
   }
 

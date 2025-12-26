@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:testing/database/db_helper.dart';
+import 'package:testing/database/user_helper.dart';
 import 'dart:async';
 
 import 'package:testing/routes/routes.dart';
@@ -53,8 +55,14 @@ class _SplashScreenState extends State<SplashScreen>
     // Start animations
     _controller.forward();
 
-    Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamed(context, AppRoutes.login);
+    Timer(const Duration(seconds: 3), () async {
+      final int? resutl = await UserHelper.getUserSession();
+
+      if (mounted) {
+        resutl != null
+            ? Navigator.pushNamed(context, AppRoutes.userHome)
+            : Navigator.pushNamed(context, AppRoutes.login);
+      }
     });
   }
 
